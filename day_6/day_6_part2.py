@@ -18,13 +18,16 @@ def calculate_distance(t, b, s):
 def main():
     race_time, race_distance = parse_data(input_data)
     s = 1
-    margin = 0
+    fails = 0
     for b in range(race_time + 1):
         calc_dist = calculate_distance(race_time, b, s)
-        if calc_dist > race_distance:
-            margin += 1
+        if calc_dist <= race_distance:
+            fails += 1
+        else:
+            # break as soon as we beat distance
+            break
 
-    return margin
+    return race_time - (fails * 2) + 1
 
 
 if __name__ == '__main__':
